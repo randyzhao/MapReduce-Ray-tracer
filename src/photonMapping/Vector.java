@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.apache.hadoop.io.Writable;
 
 public class Vector implements Writable {
-	private final double x;
+	private double x;
 	private double y;
 	private double z;
 
@@ -21,9 +21,19 @@ public class Vector implements Writable {
 		this.z = z;
 	}
 
-	private static Vector NULL, INFINIT;
+	private static Vector NULL = null, INFINIT = null;
 
 	public static Vector getNullVector(){
+		if (Vector.NULL == null) {
+			Vector.NULL = new Vector(0, 0, 0);
+		}
+		return Vector.NULL;
+	}
+
+	public static Vector getInfinitVector(){
+		if (Vector.INFINIT == null){
+			Vector.INFINIT = new Vector(Double.max)
+		}
 	}
 
 	@Override
