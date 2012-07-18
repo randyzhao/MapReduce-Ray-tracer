@@ -106,8 +106,19 @@ public class Vector implements Writable {
 				* (this.y - a.y) + (this.z - a.z) * (this.z - a.z);
 	}
 
+	public double distance(Vector a) {
+		return Math.sqrt(this.distanceSquare(a));
+	}
 	public void clear() {
 		this.x = this.y = this.z = 0;
+	}
+
+	public Vector reverse() {
+		return new Vector(-this.x, -this.y, -this.z);
+	}
+
+	public double dot(Vector a) {
+		return this.x * a.x + this.y * a.y + this.z * a.z;
 	}
 
 	public void fromFormatString(String input) {
