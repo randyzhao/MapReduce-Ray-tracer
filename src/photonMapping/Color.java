@@ -1,25 +1,58 @@
 
 package photonMapping;
 
+/**
+ * specifies the r, g, b color which can speed up the render process all r, g, b
+ * should be in [0, 1]
+ * 
+ * @author Hongze Zhao Create At : Jul 19, 2012 1:07:18 AM
+ */
 public class Color {
 
-    // TODO
-    public void clear() {
+	/**
+	 * in [0, 1]
+	 */
+	private double red;
+	/**
+	 * in [0, 1]
+	 */
+	private double blue;
+	/**
+	 * in [0, 1]
+	 */
+	private double green;
 
-    }
+	public Color() {
+		this.red = this.blue = this.green = 0;
+	}
 
-    // TODO
-    public void fromFormatString(String input) {
-        clear();
-    }
+	public Color(double red, double blue, double green) {
+		this.red = red;
+		this.blue = blue;
+		this.green = green;
+	}
 
-    // TODO
-    public String asFormatString() {
-        StringBuilder stringToBuild = new StringBuilder();
-        stringToBuild.append('(');
-        // stringToBuild.append(x).append(',').append(y).append(',').append(z);
-        stringToBuild.append(')');
-        return stringToBuild.toString();
-    }
+	public static Color BLACK(){
+		return new Color(0, 0, 0);
+	}
+
+	// TODO
+	public void clear() {
+
+	}
+
+	// TODO
+	public void fromFormatString(String input) {
+		this.clear();
+	}
+
+	// TODO
+	public String asFormatString() {
+		StringBuilder stringToBuild = new StringBuilder();
+		stringToBuild.append('(');
+		// stringToBuild.append(x).append(',').append(y).append(',').append(z);
+		stringToBuild.append(')');
+		return stringToBuild.toString();
+	}
 
 }
