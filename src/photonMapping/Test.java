@@ -1,4 +1,4 @@
-package randy;
+package photonMapping;
 
 public class Test {
 
