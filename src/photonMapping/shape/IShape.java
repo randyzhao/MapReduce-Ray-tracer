@@ -2,18 +2,14 @@ package photonMapping.shape;
 
 import java.util.List;
 
-import photonMapping.IntersectInfo;
+import photonMapping.IDirected;
 import photonMapping.PhotonHitInformation;
-import photonMapping.Ray;
 import photonMapping.Vector;
 import photonMapping.materials.IMaterial;
 
-public interface IShape {
+public interface IShape extends IAxisScale{
 	Vector getPosition();
-
 	IMaterial getMaterial();
-
-	IntersectInfo intersect(Ray r);
-
 	List<PhotonHitInformation> getPhotonHitInformations();
+	IntersectInformation intersect(IDirected directed);
 }

@@ -14,7 +14,7 @@ import org.apache.hadoop.io.WritableUtils;
 /**
  * @author v-honzha
  */
-public class PhotonInformation implements Writable {
+public class PhotonInformation implements IDirected, Writable {
 
     private Color color;
 
@@ -22,7 +22,15 @@ public class PhotonInformation implements Writable {
 
     private Vector direction;
 
-    public void clear() {
+    public Vector getSourcePosition() {
+		return sourcePosition;
+	}
+
+	public Vector getDirection() {
+		return direction;
+	}
+
+	public void clear() {
         color.clear();
         sourcePosition.clear();
         direction.clear();
