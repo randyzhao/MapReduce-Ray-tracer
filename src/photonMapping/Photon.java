@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 
 package photonMapping;
 
@@ -8,22 +11,29 @@ import java.io.IOException;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.io.WritableUtils;
 
-public class PhotonHitInformation implements Writable {
+/**
+ * @author v-honzha
+ */
+public class Photon implements IDirected, Writable {
+
     private Color color;
 
-    private Vector position;
+    private Vector sourcePosition;
 
-    private Vector incidentDirection;
+    private Vector direction;
 
-    public Vector getPosition() {
-        // TODO;
-        return null;
-    }
+    public Vector getSourcePosition() {
+		return sourcePosition;
+	}
 
-    public void clear() {
+	public Vector getDirection() {
+		return direction;
+	}
+
+	public void clear() {
         color.clear();
-        position.clear();
-        incidentDirection.clear();
+        sourcePosition.clear();
+        direction.clear();
     }
 
     public void fromFormatString(String input) {
@@ -31,15 +41,16 @@ public class PhotonHitInformation implements Writable {
         int findex = input.indexOf('|');
         color.fromFormatString(input.substring(1, findex));
         int sindex = input.indexOf('|', findex + 1);
-        position.fromFormatString(input.substring(findex + 1, sindex));
-        incidentDirection.fromFormatString(input.substring(sindex + 1, input.length() - 1));
+        sourcePosition.fromFormatString(input.substring(findex + 1, sindex));
+        direction.fromFormatString(input.substring(sindex + 1, input.length() - 1));
     }
 
     public String asFormatString() {
         StringBuilder stringToBuild = new StringBuilder();
         stringToBuild.append('[');
-        stringToBuild.append(color.asFormatString()).append('|').append(position.asFormatString())
-                .append('|').append(incidentDirection.asFormatString());
+        stringToBuild.append(color.asFormatString()).append('|')
+                .append(sourcePosition.asFormatString()).append('|')
+                .append(direction.asFormatString());
         stringToBuild.append(']');
         return stringToBuild.toString();
     }

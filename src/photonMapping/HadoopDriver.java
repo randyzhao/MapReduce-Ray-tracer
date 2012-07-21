@@ -26,9 +26,9 @@ public class HadoopDriver {
         job1.setMapperClass(RayTracerMapper.class);
         job1.setReducerClass(RayTracerReducer.class);
         job1.setMapOutputKeyClass(Vector.class);
-        job1.setMapOutputValueClass(PhotonHitInformation.class);
+        job1.setMapOutputValueClass(PhotonHitInfo.class);
         job1.setOutputKeyClass(Vector.class);
-        job1.setOutputValueClass(PhotonHitInformation.class);
+        job1.setOutputValueClass(PhotonHitInfo.class);
         FileInputFormat.setInputPaths(job1, new Path(otherArgs[0]));
         FileOutputFormat.setOutputPath(job1, new Path("output/xxx"));
         job1.waitForCompletion(true);

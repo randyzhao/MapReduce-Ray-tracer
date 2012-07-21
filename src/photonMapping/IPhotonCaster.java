@@ -12,5 +12,5 @@ import java.util.List;
  * @author v-honzha
  */
 public interface IPhotonCaster {
-    List<PhotonHitInformation> castPhoton(PhotonInformation photon);
+    List<PhotonHitInfo> castPhoton(Photon photon);
 }

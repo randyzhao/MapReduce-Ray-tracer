@@ -3,7 +3,7 @@ package photonMapping.shape;
 import java.util.ArrayList;
 import java.util.List;
 
-import photonMapping.PhotonHitInformation;
+import photonMapping.PhotonHitInfo;
 import photonMapping.Vector;
 import photonMapping.materials.IMaterial;
 
@@ -11,14 +11,14 @@ import photonMapping.materials.IMaterial;
 public abstract class GeneralShape implements IShape{
 	protected Vector position;
 	protected IMaterial material;
-	protected List<PhotonHitInformation> photonHitInformations = new ArrayList<PhotonHitInformation>();
+	protected List<PhotonHitInfo> photonHitInformations = new ArrayList<PhotonHitInfo>();
 	public Vector getPosition() {
 		return position;
 	}
 	public IMaterial getMaterial() {
 		return material;
 	}
-	public List<PhotonHitInformation> getPhotonHitInformations() {
+	public List<PhotonHitInfo> getPhotonHitInformations() {
 		return photonHitInformations;
 	}
 

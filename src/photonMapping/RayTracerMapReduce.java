@@ -8,10 +8,10 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 public class RayTracerMapReduce {
     public static class RayTracerMapper extends
-            Mapper<Object, PhotonInformation, Vector, PhotonHitInformation> {
+            Mapper<Object, Photon, Vector, PhotonHitInfo> {
         IPhotonCaster photonCaster;
 
-        public void map(Object key, PhotonInformation value, Context context) throws IOException,
+        public void map(Object key, Photon value, Context context) throws IOException,
                 InterruptedException {
 
         }
@@ -22,8 +22,8 @@ public class RayTracerMapReduce {
     }
 
     public static class RayTracerReducer extends
-            Reducer<Vector, PhotonHitInformation, Vector, PhotonHitInformation> {
-        public void reduce(Vector key, Iterable<PhotonHitInformation> values, Context context)
+            Reducer<Vector, PhotonHitInfo, Vector, PhotonHitInfo> {
+        public void reduce(Vector key, Iterable<PhotonHitInfo> values, Context context)
                 throws IOException, InterruptedException {
 
         }
