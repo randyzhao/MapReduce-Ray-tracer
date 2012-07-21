@@ -38,10 +38,10 @@ public class Sphere extends GeneralShape {
 	 * @see photonMapping.shape.IShape#intersect(photonMapping.IDirected)
 	 */
 	@Override
-	public IntersectInformation intersect(IDirected directed) {
-		IntersectInformation ii = new IntersectInformation();
-		double loc2 = this.center.distanceSquare(directed.getSourcePosition());
-		double tca = (this.center.minus(directed.getSourcePosition())).dot(
+	public IntersectInfo intersect(IDirected directed) {
+		IntersectInfo ii = new IntersectInfo();
+		double loc2 = this.center.distanceSquare(directed.getPosition());
+		double tca = (this.center.minus(directed.getPosition())).dot(
 				directed.getDirection().normilize());
 		double thc2 = this.radius * this.radius - loc2 + tca * tca;
 		if (tca >= 0 && thc2 > 0) {
@@ -50,7 +50,7 @@ public class Sphere extends GeneralShape {
 			if (t < 0) {
 				t = tca + sqrtNum;
 			}
-			Vector intersect = directed.getSourcePosition().plus(
+			Vector intersect = directed.getPosition().plus(
 					directed.getDirection().normilize().multiple(t));
 			ii.setHit(true);
 			ii.setPosition(intersect);

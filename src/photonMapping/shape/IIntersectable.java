@@ -11,5 +11,5 @@ import photonMapping.Ray;
  *
  */
 public interface IIntersectable extends IAxisScale {
-	IntersectInformation intersect(IDirected directed);
+	IntersectInfo intersect(IDirected directed);
 }

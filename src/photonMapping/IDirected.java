@@ -6,6 +6,6 @@ package photonMapping;
  *
  */
 public interface IDirected {
-	Vector getSourcePosition();
+	Vector getPosition();
 	Vector getDirection();
 }

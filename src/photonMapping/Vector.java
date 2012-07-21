@@ -82,8 +82,8 @@ public class Vector implements Writable {
 		return new Vector(this.x - a.x, this.y - a.y, this.z - a.z);
 	}
 
-	public Vector multiple(Vector a) {
-		return new Vector(this.x * a.x, this.y * a.y, this.z * a.z);
+	public double multiple(Vector a) {
+		return this.x + a.x + this.y * a.y + this.z * a.z;
 	}
 
 	public Vector multiple(double f) {
@@ -121,6 +121,10 @@ public class Vector implements Writable {
 		return this.x * a.x + this.y * a.y + this.z * a.z;
 	}
 
+	public Vector cross(Vector a) {
+		return new Vector(this.y * a.z - this.z * a.y, this.z * a.x - this.x
+				* a.z, this.x * a.y - this.y * a.x);
+	}
 	public void fromFormatString(String input) {
 		this.clear();
 		int findex = input.indexOf(',');

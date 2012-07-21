@@ -81,9 +81,9 @@ public class BoundingVolumn {
 	}
 
 	public boolean isIntersected(IDirected directed) {
-		double ox = directed.getSourcePosition().getX();
-		double oy = directed.getSourcePosition().getY();
-		double oz = directed.getSourcePosition().getZ();
+		double ox = directed.getPosition().getX();
+		double oy = directed.getPosition().getY();
+		double oz = directed.getPosition().getZ();
 
 		double dx = directed.getDirection().getX();
 		double dy = directed.getDirection().getY();

@@ -3,7 +3,7 @@ package photonMapping.shape;
 import photonMapping.IDirected;
 import photonMapping.Vector;
 
-public class IntersectInformation {
+public class IntersectInfo {
 	private boolean isHit;
 	private Vector position;
 	/**
@@ -12,16 +12,19 @@ public class IntersectInformation {
 	private Vector normal;
 	private double distance;
 	private IDirected directed;
-
-	public IntersectInformation(){
+	private Object content;
+	public IntersectInfo(){
 		this.isHit = false;
 	}
-	public IntersectInformation(Vector position, Vector normal, double distance, IDirected directed){
+
+	public IntersectInfo(Vector position, Vector normal,
+			double distance, IDirected directed, Object content) {
 		this.isHit = true;
 		this.position = position;
 		this.normal = normal;
 		this.distance = distance;
 		this.directed = directed;
+		this.content = content;
 	}
 	public boolean isHit() {
 		return this.isHit;
@@ -53,4 +56,11 @@ public class IntersectInformation {
 		this.directed = directed;
 	}
 
+	public Object getContent() {
+		return this.content;
+	}
+
+	public void setContent(Object content) {
+		this.content = content;
+	}
 }

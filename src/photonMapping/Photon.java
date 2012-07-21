@@ -22,7 +22,7 @@ public class Photon implements IDirected, Writable {
 
     private Vector direction;
 
-    public Vector getSourcePosition() {
+    public Vector getPosition() {
 		return sourcePosition;
 	}
 

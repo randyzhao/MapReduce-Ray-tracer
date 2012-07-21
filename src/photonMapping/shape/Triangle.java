@@ -121,7 +121,7 @@ public class Triangle extends GeneralShape implements IAxisScale {
 	}
 
 	@Override
-	public IntersectInformation intersect(IDirected directed) {
+	public IntersectInfo intersect(IDirected directed) {
 		// TODO Auto-generated method stub
 		return null;
 	}

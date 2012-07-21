@@ -11,5 +11,5 @@ public interface IShape extends IAxisScale{
 	Vector getPosition();
 	IMaterial getMaterial();
 	List<PhotonHitInfo> getPhotonHitInformations();
-	IntersectInformation intersect(IDirected directed);
+	IntersectInfo intersect(IDirected directed);
 }
