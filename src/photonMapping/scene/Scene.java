@@ -17,8 +17,13 @@ package photonMapping.scene;
 import java.util.ArrayList;
 import java.util.List;
 
+import photonMapping.Color;
+import photonMapping.Vector;
+import photonMapping.lightSource.DotLightSource;
 import photonMapping.lightSource.ILightSource;
+import photonMapping.materials.DiffuseMaterial;
 import photonMapping.shape.IShape;
+import photonMapping.shape.Sphere;
 
 /**
  *
@@ -46,6 +51,15 @@ public class Scene {
 
 	public void setShapes(List<IShape> shapes) {
 		this.shapes = shapes;
+	}
+
+	public static Scene testScene() {
+		Scene scene = new Scene();
+		scene.shapes.add(new Sphere(5, new Vector(0, 0, 0),
+				new DiffuseMaterial(0.5, new Color(1, 0, 0))));
+		scene.lightSource = new DotLightSource(new Vector(5, 5, 5), new Color(
+				0, 1, 0));
+		return scene;
 	}
 
 }
