@@ -16,63 +16,73 @@ import org.apache.hadoop.io.WritableUtils;
  */
 public class Photon implements IDirected, Writable {
 
-    private Color color;
+	private Color color;
 
-    private Vector sourcePosition;
+	private Vector sourcePosition;
 
-    private Vector direction;
+	private Vector direction;
 
-    public Vector getPosition() {
-		return sourcePosition;
+	@Override
+	public Vector getPosition() {
+		return this.sourcePosition;
 	}
 
+	@Override
 	public Vector getDirection() {
-		return direction;
+		return this.direction;
 	}
 
 	public void clear() {
-        color.clear();
-        sourcePosition.clear();
-        direction.clear();
-    }
+		this.color.clear();
+		this.sourcePosition.clear();
+		this.direction.clear();
+	}
 
-    public void fromFormatString(String input) {
-        clear();
-        int findex = input.indexOf('|');
-        color.fromFormatString(input.substring(1, findex));
-        int sindex = input.indexOf('|', findex + 1);
-        sourcePosition.fromFormatString(input.substring(findex + 1, sindex));
-        direction.fromFormatString(input.substring(sindex + 1, input.length() - 1));
-    }
+	public Color getColor() {
+		return this.color;
+	}
 
-    public String asFormatString() {
-        StringBuilder stringToBuild = new StringBuilder();
-        stringToBuild.append('[');
-        stringToBuild.append(color.asFormatString()).append('|')
-                .append(sourcePosition.asFormatString()).append('|')
-                .append(direction.asFormatString());
-        stringToBuild.append(']');
-        return stringToBuild.toString();
-    }
+	public Vector getSourcePosition() {
+		return this.sourcePosition;
+	}
 
-    @Override
-    public void readFields(DataInput input) throws IOException {
-        int length = WritableUtils.readVInt(input);
-        byte[] bytes = new byte[length];
-        input.readFully(bytes, 0, length);
-        fromFormatString(new String(bytes));
-    }
+	public void fromFormatString(String input) {
+		this.clear();
+		int findex = input.indexOf('|');
+		this.color.fromFormatString(input.substring(1, findex));
+		int sindex = input.indexOf('|', findex + 1);
+		this.sourcePosition.fromFormatString(input.substring(findex + 1, sindex));
+		this.direction.fromFormatString(input.substring(sindex + 1, input.length() - 1));
+	}
 
-    @Override
-    public void write(DataOutput output) throws IOException {
-        String content = asFormatString();
-        WritableUtils.writeVInt(output, content.length());
-        output.writeBytes(content);
-    }
+	public String asFormatString() {
+		StringBuilder stringToBuild = new StringBuilder();
+		stringToBuild.append('[');
+		stringToBuild.append(this.color.asFormatString()).append('|')
+		.append(this.sourcePosition.asFormatString()).append('|')
+		.append(this.direction.asFormatString());
+		stringToBuild.append(']');
+		return stringToBuild.toString();
+	}
 
-    @Override
-    public String toString() {
-        return asFormatString();
-    }
+	@Override
+	public void readFields(DataInput input) throws IOException {
+		int length = WritableUtils.readVInt(input);
+		byte[] bytes = new byte[length];
+		input.readFully(bytes, 0, length);
+		this.fromFormatString(new String(bytes));
+	}
+
+	@Override
+	public void write(DataOutput output) throws IOException {
+		String content = this.asFormatString();
+		WritableUtils.writeVInt(output, content.length());
+		output.writeBytes(content);
+	}
+
+	@Override
+	public String toString() {
+		return this.asFormatString();
+	}
 
 }

@@ -6,6 +6,8 @@ import java.io.IOException;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
+import photonMapping.photonCast.IPhotonCaster;
+
 public class RayTracerMapReduce {
     public static class RayTracerMapper extends
             Mapper<Object, Photon, Vector, PhotonHitInfo> {
