@@ -19,9 +19,8 @@ import photonMapping.shape.IShape;
 import photonMapping.shape.IntersectInfo;
 
 /**
- *
- * @author Hongze Zhao
- * Create At : Jul 21, 2012 3:24:54 PM
+ * 
+ * @author Hongze Zhao Create At : Jul 21, 2012 3:24:54 PM
  */
 public class ShapesKDTree extends KDTree<IShape> {
 	protected ShapesKDTree leftChild;
@@ -30,32 +29,42 @@ public class ShapesKDTree extends KDTree<IShape> {
 	public IntersectInfo intersect(Ray ray) {
 		IntersectInfo ii = new IntersectInfo();
 		ii.setHit(false);
-		if (this.boundingVolumn.isIntersected(ray) == false){
+		if (this.boundingVolumn.isIntersected(ray) == false) {
 			return ii;
 		}
-		if (this.leaf){
-			IntersectInfo tempii = this.content.intersect(ray);
-			if (tempii.isHit()) {
-				ii = tempii;
+		if (this.leaf) {
+			double nearestDist = Double.MAX_VALUE;
+			IntersectInfo nearestII = null;
+			for (IShape shape : this.contents) {
+				IntersectInfo tempii = shape.intersect(ray);
+				if (tempii.isHit() && tempii.getDistance() < nearestDist) {
+					nearestDist = tempii.getDistance();
+					nearestII = tempii;
+				}
+			}
+			if (nearestII != null) {
+				ii = nearestII;
 			}
 		} else {// not a leaf
-			switch (this.seperateMethod){
+			switch (this.seperateMethod) {
 			case XAxis:
-				if (this.seperatePlain.intersect(ray).isHit() == false){
-					if (ray.getPosition().getX() <= this.seperatePlain.getPosition().getX()){
+				if (this.seperatePlain.intersect(ray).isHit() == false) {
+					if (ray.getPosition().getX() <= this.seperatePlain
+							.getPosition().getX()) {
 						ii = this.leftChild.intersect(ray);
-					}else{
+					} else {
 						ii = this.rightChild.intersect(ray);
 					}
-				}else{//ray cross the plane
-					if (ray.getPosition().getX() <= this.seperatePlain.getPosition().getX()){
+				} else {// ray cross the plane
+					if (ray.getPosition().getX() <= this.seperatePlain
+							.getPosition().getX()) {
 						ii = this.leftChild.intersect(ray);
-						if (ii.isHit() == false){
+						if (ii.isHit() == false) {
 							ii = this.rightChild.intersect(ray);
 						}
-					}else{
+					} else {
 						ii = this.rightChild.intersect(ray);
-						if (ii.isHit() == false){
+						if (ii.isHit() == false) {
 							ii = this.leftChild.intersect(ray);
 						}
 					}
@@ -63,21 +72,23 @@ public class ShapesKDTree extends KDTree<IShape> {
 				break;
 
 			case YAxis:
-				if (this.seperatePlain.intersect(ray).isHit() == false){
-					if (ray.getPosition().getY() <= this.seperatePlain.getPosition().getY()){
+				if (this.seperatePlain.intersect(ray).isHit() == false) {
+					if (ray.getPosition().getY() <= this.seperatePlain
+							.getPosition().getY()) {
 						ii = this.leftChild.intersect(ray);
-					}else{
+					} else {
 						ii = this.rightChild.intersect(ray);
 					}
-				}else{
-					if (ray.getPosition().getY() <= this.seperatePlain.getPosition().getY()){
+				} else {
+					if (ray.getPosition().getY() <= this.seperatePlain
+							.getPosition().getY()) {
 						ii = this.leftChild.intersect(ray);
-						if (ii.isHit() == false){
+						if (ii.isHit() == false) {
 							ii = this.rightChild.intersect(ray);
 						}
-					}else{
+					} else {
 						ii = this.rightChild.intersect(ray);
-						if (ii.isHit() == false){
+						if (ii.isHit() == false) {
 							ii = this.leftChild.intersect(ray);
 						}
 					}
@@ -85,25 +96,27 @@ public class ShapesKDTree extends KDTree<IShape> {
 				break;
 
 			case ZAxis:
-				if (this.seperatePlain.intersect(ray).isHit() == false)//ray didn't across the plane
+				if (this.seperatePlain.intersect(ray).isHit() == false)// ray
+					// didn't
+					// across
+					// the
+					// plane
 				{
-					if (ray.getPosition().getZ() <= this.seperatePlain.getPosition().getZ()) {
+					if (ray.getPosition().getZ() <= this.seperatePlain
+							.getPosition().getZ()) {
 						ii = this.leftChild.intersect(ray);
 					} else {
 						ii = this.rightChild.intersect(ray);
 					}
-				}
-				else//ray across the plane
+				} else// ray across the plane
 				{
-					if (ray.getPosition().getZ() <= this.seperatePlain.getPosition().getZ())
-					{
+					if (ray.getPosition().getZ() <= this.seperatePlain
+							.getPosition().getZ()) {
 						ii = this.leftChild.intersect(ray);
 						if (ii.isHit() == false) {
 							ii = this.rightChild.intersect(ray);
 						}
-					}
-					else
-					{
+					} else {
 						ii = this.rightChild.intersect(ray);
 						if (ii.isHit() == false) {
 							ii = this.leftChild.intersect(ray);

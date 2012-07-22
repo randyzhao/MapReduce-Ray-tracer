@@ -8,7 +8,9 @@ import java.io.IOException;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.io.WritableUtils;
 
-public class Vector implements Writable {
+import photonMapping.shape.IAxisScale;
+
+public class Vector implements Writable, IAxisScale {
 
 	private double x;
 	private double y;
@@ -160,5 +162,65 @@ public class Vector implements Writable {
 	@Override
 	public String toString() {
 		return this.asFormatString();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#minX()
+	 */
+	@Override
+	public double minX() {
+		return this.x;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#maxX()
+	 */
+	@Override
+	public double maxX() {
+		return this.x;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#minY()
+	 */
+	@Override
+	public double minY() {
+		return this.y;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#maxY()
+	 */
+	@Override
+	public double maxY() {
+		return this.y;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#minZ()
+	 */
+	@Override
+	public double minZ() {
+		return this.z;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#maxZ()
+	 */
+	@Override
+	public double maxZ() {
+		return this.z;
 	}
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shapes>
+	<shape type="Sphere">
+		<param name="radius" value="5"/>
+		<param name="position" value="(0, 0, 0)"/>
+	</shape>
+</shapes>
+<lightsources>
+	<lightsource type="DotLightSource">
+		<param name="color" value="(1, 1, 1)"/>
+		<param name="position" value="(5, 5, 5)"/>
+	</lightsource>
+</lightsources>

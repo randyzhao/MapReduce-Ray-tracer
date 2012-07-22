@@ -8,7 +8,9 @@ import java.io.IOException;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.io.WritableUtils;
 
-public class PhotonHitInfo implements Writable {
+import photonMapping.shape.IAxisScale;
+
+public class PhotonHitInfo implements Writable, IAxisScale {
 	private Color color;
 
 	private Vector position;
@@ -68,6 +70,66 @@ public class PhotonHitInfo implements Writable {
 	@Override
 	public String toString() {
 		return this.asFormatString();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#minX()
+	 */
+	@Override
+	public double minX() {
+		return this.position.minX();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#maxX()
+	 */
+	@Override
+	public double maxX() {
+		return this.position.maxX();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#minY()
+	 */
+	@Override
+	public double minY() {
+		return this.position.minY();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#maxY()
+	 */
+	@Override
+	public double maxY() {
+		return this.position.maxY();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#minZ()
+	 */
+	@Override
+	public double minZ() {
+		return this.position.minZ();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see photonMapping.shape.IAxisScale#maxZ()
+	 */
+	@Override
+	public double maxZ() {
+		return this.position.maxZ();
 	}
 
 }

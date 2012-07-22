@@ -48,11 +48,12 @@ public class Color {
 
 	// TODO
 	public String asFormatString() {
-		StringBuilder stringToBuild = new StringBuilder();
-		stringToBuild.append('(');
-		// stringToBuild.append(x).append(',').append(y).append(',').append(z);
-		stringToBuild.append(')');
-		return stringToBuild.toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append('(');
+		sb.append(this.red).append(',').append(this.green).append(',')
+				.append(this.blue);
+		sb.append(')');
+		return sb.toString();
 	}
 
 }

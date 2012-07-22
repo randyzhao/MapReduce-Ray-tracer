@@ -55,9 +55,11 @@ public class Scene {
 
 	public static Scene testScene() {
 		Scene scene = new Scene();
-		scene.shapes.add(new Sphere(5, new Vector(0, 0, 0),
+		scene.shapes.add(new Sphere(1, new Vector(0, 0, 0),
 				new DiffuseMaterial(0.5, new Color(1, 0, 0))));
-		scene.lightSource = new DotLightSource(new Vector(5, 5, 5), new Color(
+		scene.shapes.add(new Sphere(1, new Vector(0, 0, 0),
+				new DiffuseMaterial(0.5, new Color(0, 0, 1))));
+		scene.lightSource = new DotLightSource(new Vector(0, 0, 2), new Color(
 				0, 1, 0));
 		return scene;
 	}

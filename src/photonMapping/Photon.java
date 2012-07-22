@@ -22,6 +22,18 @@ public class Photon implements IDirected, Writable {
 
 	private Vector direction;
 
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public void setSourcePosition(Vector sourcePosition) {
+		this.sourcePosition = sourcePosition;
+	}
+
+	public void setDirection(Vector direction) {
+		this.direction = direction;
+	}
+
 	@Override
 	public Vector getPosition() {
 		return this.sourcePosition;
