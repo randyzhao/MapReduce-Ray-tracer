@@ -2,7 +2,13 @@
 package photonMapping;
 
 public class Ray implements IDirected {
+	private Vector position;
+	private Vector direction;
 
+	public Ray(Vector position, Vector direction) {
+		this.position = position;
+		this.direction = direction;
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -10,8 +16,7 @@ public class Ray implements IDirected {
 	 */
 	@Override
 	public Vector getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.position;
 	}
 
 	/*
@@ -21,8 +26,7 @@ public class Ray implements IDirected {
 	 */
 	@Override
 	public Vector getDirection() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.direction;
 	}
 
 }

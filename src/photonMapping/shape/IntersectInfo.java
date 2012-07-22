@@ -1,7 +1,9 @@
 package photonMapping.shape;
 
+import photonMapping.Color;
 import photonMapping.IDirected;
 import photonMapping.Vector;
+import photonMapping.materials.IMaterial;
 
 public class IntersectInfo {
 	private boolean isHit;
@@ -12,19 +14,23 @@ public class IntersectInfo {
 	private Vector normal;
 	private double distance;
 	private IDirected directed;
-	private Object content;
+	private IShape content;
+	private Color color;
+	private IMaterial material;
 	public IntersectInfo(){
 		this.isHit = false;
 	}
 
 	public IntersectInfo(Vector position, Vector normal,
-			double distance, IDirected directed, Object content) {
+			double distance,
+			IDirected directed, IShape content, Color color) {
 		this.isHit = true;
 		this.position = position;
 		this.normal = normal;
 		this.distance = distance;
 		this.directed = directed;
 		this.content = content;
+		this.color = color;
 	}
 	public boolean isHit() {
 		return this.isHit;
@@ -56,11 +62,35 @@ public class IntersectInfo {
 		this.directed = directed;
 	}
 
-	public Object getContent() {
+	public IShape getContent() {
 		return this.content;
 	}
 
-	public void setContent(Object content) {
+	public void setContent(IShape content) {
 		this.content = content;
+	}
+
+	public Color getColor() {
+		return this.color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public Vector getNormal() {
+		return this.normal;
+	}
+
+	public IDirected getDirected() {
+		return this.directed;
+	}
+
+	public IMaterial getMaterial() {
+		return this.material;
+	}
+
+	public void setMaterial(IMaterial material) {
+		this.material = material;
 	}
 }
