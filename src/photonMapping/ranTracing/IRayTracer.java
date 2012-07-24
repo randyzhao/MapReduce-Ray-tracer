@@ -14,7 +14,7 @@
  */
 package photonMapping.ranTracing;
 
-import photonMapping.Color;
+import photonMapping.RayHitInfo;
 
 /**
  *
@@ -22,5 +22,13 @@ import photonMapping.Color;
  * Create At : Jul 22, 2012 10:30:23 PM
  */
 public interface IRayTracer {
-	Color rayTrace(double xd, double yd);
+	/**
+	 * 
+	 * @param xd
+	 *            relative position in the viewport
+	 * @param yd
+	 * @return
+	 * @author Hongze Zhao
+	 */
+	RayHitInfo rayTrace(double xd, double yd);
 }

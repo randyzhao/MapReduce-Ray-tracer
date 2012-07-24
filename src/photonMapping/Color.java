@@ -42,6 +42,18 @@ public class Color {
 
 	}
 
+	public double getRed() {
+		return this.red;
+	}
+
+	public double getBlue() {
+		return this.blue;
+	}
+
+	public double getGreen() {
+		return this.green;
+	}
+
 	// TODO
 	public void fromFormatString(String input) {
 		this.clear();

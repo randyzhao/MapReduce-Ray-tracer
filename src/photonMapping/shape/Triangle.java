@@ -29,40 +29,40 @@ public class Triangle extends GeneralShape implements IAxisScale {
 	 * calculate minx and maxx
 	 */
 	private void assignXSacle(){
-		 minx = Double.MAX_VALUE;
-         maxx = -Double.MAX_VALUE;
-         for (Vector vv : v){
-        	 if (vv.getX() < minx){
-        		 minx = vv.getX();
-        	 }
-        	 if (vv.getX() > maxx){
-        		 maxx = vv.getX();
-        	 }
-         }
-	}
-	
-	private void assignYScale(){
-		miny = Double.MAX_VALUE;
-		maxy = -Double.MAX_VALUE;
-		for (Vector vv : v){
-			if (vv.getY() < miny){
-				miny = vv.getY();
+		this.minx = Double.MAX_VALUE;
+		this.maxx = -Double.MAX_VALUE;
+		for (Vector vv : this.v){
+			if (vv.getX() < this.minx){
+				this.minx = vv.getX();
 			}
-			if (vv.getY() > maxy){
-				maxy = vv.getY();
+			if (vv.getX() > this.maxx){
+				this.maxx = vv.getX();
 			}
 		}
 	}
-	
-	private void assignZScale(){
-		minz = Double.MAX_VALUE;
-		maxz = -Double.MAX_VALUE; 
-		for (Vector vv : v){
-			if (vv.getZ() < minz){
-				minz = vv.getZ();
+
+	private void assignYScale(){
+		this.miny = Double.MAX_VALUE;
+		this.maxy = -Double.MAX_VALUE;
+		for (Vector vv : this.v){
+			if (vv.getY() < this.miny){
+				this.miny = vv.getY();
 			}
-			if (vv.getZ() > maxz){
-				maxz = vv.getZ();
+			if (vv.getY() > this.maxy){
+				this.maxy = vv.getY();
+			}
+		}
+	}
+
+	private void assignZScale(){
+		this.minz = Double.MAX_VALUE;
+		this.maxz = -Double.MAX_VALUE; 
+		for (Vector vv : this.v){
+			if (vv.getZ() < this.minz){
+				this.minz = vv.getZ();
+			}
+			if (vv.getZ() > this.maxz){
+				this.maxz = vv.getZ();
 			}
 		}
 	}
@@ -71,8 +71,7 @@ public class Triangle extends GeneralShape implements IAxisScale {
 	 */
 	@Override
 	public double minX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.minx;
 	}
 
 	/* (non-Javadoc)
@@ -80,8 +79,7 @@ public class Triangle extends GeneralShape implements IAxisScale {
 	 */
 	@Override
 	public double maxX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.maxx;
 	}
 
 	/* (non-Javadoc)
@@ -89,8 +87,7 @@ public class Triangle extends GeneralShape implements IAxisScale {
 	 */
 	@Override
 	public double minY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.miny;
 	}
 
 	/* (non-Javadoc)
@@ -98,8 +95,7 @@ public class Triangle extends GeneralShape implements IAxisScale {
 	 */
 	@Override
 	public double maxY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.maxy;
 	}
 
 	/* (non-Javadoc)
@@ -107,8 +103,7 @@ public class Triangle extends GeneralShape implements IAxisScale {
 	 */
 	@Override
 	public double minZ() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.minz;
 	}
 
 	/* (non-Javadoc)
@@ -116,8 +111,7 @@ public class Triangle extends GeneralShape implements IAxisScale {
 	 */
 	@Override
 	public double maxZ() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.maxz;
 	}
 
 	@Override

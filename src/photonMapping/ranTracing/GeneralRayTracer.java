@@ -16,6 +16,7 @@ package photonMapping.ranTracing;
 
 import photonMapping.Color;
 import photonMapping.Ray;
+import photonMapping.RayHitInfo;
 import photonMapping.Vector;
 import photonMapping.lightSource.ILightSource;
 import photonMapping.scene.Scene;
@@ -41,18 +42,20 @@ public class GeneralRayTracer implements IRayTracer {
 	 * @see photonMapping.ranTracing.IRayTracer#rayTrace(double, double, int)
 	 */
 	@Override
-	public Color rayTrace(double xd, double yd) {
-		Ray ray = this.scene.getCamera().getRay(xd, yd);
-		return this.calculateColor(ray);
+	public RayHitInfo rayTrace(double xd, double yd) {
+		return this.calculateColor(xd, yd);
 	}
 
-	private Color calculateColor(Ray ray) {
+	private RayHitInfo calculateColor(double xd, double yd) {
+		Ray ray = this.scene.getCamera().getRay(xd, yd);
 		IntersectInfo ii = this.getIntersectInfo(ray);
+		Color col = null;
 		if (ii.isHit()) {
-			return this.render(ray, ii, 0);
+			col = this.render(ray, ii, 0);
 		} else {
-			return this.scene.getBackground().getColor();
+			col = this.scene.getBackground().getColor();
 		}
+		return new RayHitInfo(xd, yd, col);
 	}
 
 	private IntersectInfo getIntersectInfo(Ray ray) {
