@@ -112,8 +112,7 @@ public class ExtendedPlain extends GeneralShape {
 	 */
 	@Override
 	public Vector getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.position;
 	}
 
 	/* (non-Javadoc)

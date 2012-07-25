@@ -31,6 +31,31 @@ public class RayHitInfo implements Writable {
 	 */
 	private double xd, yd;
 	private Color color;
+
+	public double getXd() {
+		return this.xd;
+	}
+
+	public void setXd(double xd) {
+		this.xd = xd;
+	}
+
+	public double getYd() {
+		return this.yd;
+	}
+
+	public void setYd(double yd) {
+		this.yd = yd;
+	}
+
+	public Color getColor() {
+		return this.color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
 	/**
 	 * @param args
 	 * @author Hongze Zhao	

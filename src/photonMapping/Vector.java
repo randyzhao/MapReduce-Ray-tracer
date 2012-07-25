@@ -223,4 +223,12 @@ public class Vector implements Writable, IAxisScale {
 	public double maxZ() {
 		return this.z;
 	}
+
+	@Override
+	public int hashCode() {
+		Double dx = this.x;
+		Double dy = this.y;
+		Double dz = this.z;
+		return dx.hashCode() * 43669 + dy.hashCode() * 20663 + dz.hashCode();
+	}
 }

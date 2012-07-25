@@ -19,8 +19,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
-import photonMapping.Vector;
-
 /**
  *
  * @author Hongze Zhao
@@ -50,23 +48,22 @@ public class DistributedRayProducer implements IRayProducer {
 	@Override
 	public void produceRay(String filePath, int height, int width)
 			throws IOException {
-		BufferedWriter br = new BufferedWriter(new FileWriter(filePath));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
 		Random ran = new Random();
 		for (int y = 0; y < height + 2; y++) {
 			for (int x = 0; x < width + 2; x++) {
-				Vector colVec = new Vector();
-
 				for (int p = 0; p < this.jitterNumber; p++){
 					for (int q = 0; q < this.jitterNumber; q++){
 						double yd = (y + (p + ran.nextDouble()) / this.jitterNumber) * 1.0f / height * 2 - 1;
 						double xd = (x + (q + ran.nextDouble()) / this.jitterNumber) * 1.0f / width * 2 - 1;
 						StringBuilder sb = new StringBuilder();
-						sb.append(xd).append(",").append(yd);
+						sb.append(xd).append(",").append(yd).append('\n');
+						bw.write(sb.toString());
 					}
 				}
 			}
 		}
-		br.close();
+		bw.close();
 	}
 
 

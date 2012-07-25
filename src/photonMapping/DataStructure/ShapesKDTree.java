@@ -19,6 +19,7 @@ import java.util.List;
 
 import photonMapping.IDirected;
 import photonMapping.Vector;
+import photonMapping.shape.BoundingVolumn;
 import photonMapping.shape.ExtendedPlain;
 import photonMapping.shape.IAxisScale;
 import photonMapping.shape.IShape;
@@ -34,9 +35,50 @@ public class ShapesKDTree extends KDTree<IShape> {
 	protected ShapesKDTree rightChild;
 	protected List<Triangle> contents;
 
+	public void buildBoundingVolumn() {
+		if (this.leaf) {
+			double maxX = -Double.MAX_VALUE;
+			double minX = Double.MAX_VALUE;
+			double maxY = -Double.MAX_VALUE;
+			double minY = Double.MAX_VALUE;
+			double maxZ = -Double.MAX_VALUE;
+			double minZ = Double.MAX_VALUE;
+			for (Triangle t : this.contents) {
+				maxX = Math.max(maxX, t.maxX());
+				minX = Math.min(minX, t.minX());
+				maxY = Math.max(maxY, t.maxY());
+				minY = Math.min(minY, t.minY());
+				maxZ = Math.max(maxZ, t.maxZ());
+				minZ = Math.min(minZ, t.minZ());
+			}
+			this.boundingVolumn = new BoundingVolumn(new Vector(minX, minY, minZ),
+					new Vector(maxX, maxY, maxZ));
+		} else {
+			this.leftChild.buildBoundingVolumn();
+			this.rightChild.buildBoundingVolumn();
+			double minX = Math.min(this.leftChild.getBoundingVolumn().minX(),
+					this.rightChild.getBoundingVolumn().minX());
+			double minY = Math.min(this.leftChild.getBoundingVolumn().minY(),
+					this.rightChild.getBoundingVolumn().minY());
+			double minZ = Math.min(this.leftChild.getBoundingVolumn().minZ(),
+					this.rightChild.getBoundingVolumn().minZ());
+			double maxX = Math.max(this.leftChild.getBoundingVolumn().maxX(),
+					this.rightChild.getBoundingVolumn().maxX());
+			double maxY = Math.max(this.leftChild.getBoundingVolumn().maxY(),
+					this.rightChild.getBoundingVolumn().maxY());
+			double maxZ = Math.max(this.leftChild.getBoundingVolumn().maxZ(),
+					this.rightChild.getBoundingVolumn().maxZ());
+			this.boundingVolumn = new BoundingVolumn(new Vector(minX, minY,
+					minZ), new Vector(maxX, maxY, maxZ));
+		}
+	}
+
 	public IntersectInfo intersect(IDirected directed) {
 		IntersectInfo ii = new IntersectInfo();
 		ii.setHit(false);
+		if (this.boundingVolumn == null) {
+			this.buildBoundingVolumn();
+		}
 		if (this.boundingVolumn.isIntersected(directed) == false) {
 			return ii;
 		}
@@ -104,20 +146,16 @@ public class ShapesKDTree extends KDTree<IShape> {
 				break;
 
 			case ZAxis:
-				if (this.seperatePlain.intersect(directed).isHit() == false)// ray
-					// didn't
-					// across
-					// the
-					// plane
-				{
+				if (this.seperatePlain.intersect(directed).isHit() == false) {
+					// ray didn't across the plane
 					if (directed.getPosition().getZ() <= this.seperatePlain
 							.getPosition().getZ()) {
 						ii = this.leftChild.intersect(directed);
 					} else {
 						ii = this.rightChild.intersect(directed);
 					}
-				} else// ray across the plane
-				{
+				} else {// ray across the plane
+
 					if (directed.getPosition().getZ() <= this.seperatePlain
 							.getPosition().getZ()) {
 						ii = this.leftChild.intersect(directed);

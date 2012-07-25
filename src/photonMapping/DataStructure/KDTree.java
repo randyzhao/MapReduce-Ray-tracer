@@ -16,7 +16,6 @@ package photonMapping.DataStructure;
 
 import java.util.List;
 
-import photonMapping.Vector;
 import photonMapping.shape.BoundingVolumn;
 import photonMapping.shape.ExtendedPlain;
 import photonMapping.shape.IAxisScale;
@@ -52,9 +51,6 @@ public class KDTree<T extends IAxisScale> {
 	}
 
 	public BoundingVolumn getBoundingVolumn() {
-		if (this.boundingVolumn == null) {
-			this.buildBoundingVolumn();
-		}
 		return this.boundingVolumn;
 	}
 
@@ -78,24 +74,7 @@ public class KDTree<T extends IAxisScale> {
 		this.rightChild = rightChild;
 	}
 
-	public void buildBoundingVolumn() {
-		double maxX = -Double.MAX_VALUE;
-		double minX = Double.MAX_VALUE;
-		double maxY = -Double.MAX_VALUE;
-		double minY = Double.MAX_VALUE;
-		double maxZ = -Double.MAX_VALUE;
-		double minZ = Double.MAX_VALUE;
-		for (T t : this.contents) {
-			maxX = Math.max(maxX, t.maxX());
-			minX = Math.min(minX, t.minX());
-			maxY = Math.max(maxY, t.maxY());
-			minY = Math.min(minY, t.minY());
-			maxZ = Math.max(maxZ, t.maxZ());
-			minZ = Math.min(minZ, t.minZ());
-		}
-		this.boundingVolumn = new BoundingVolumn(new Vector(minX, minY, minZ),
-				new Vector(maxX, maxY, maxZ));
-	}
+
 
 
 

@@ -1,6 +1,9 @@
 
 package photonMapping;
 
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * specifies the r, g, b color which can speed up the render process all r, g, b
  * should be in [0, 1]
@@ -33,6 +36,12 @@ public class Color {
 		this.bound();
 	}
 
+	public int toIntValue() {
+		int rgb = (int) (this.red * 256);
+		rgb = (rgb << 8) + (int) (this.green * 256);
+		rgb = (rgb << 8) + (int) (this.blue * 256);
+		return rgb;
+	}
 	public static Color BLACK(){
 		return new Color(0, 0, 0);
 	}
@@ -88,6 +97,25 @@ public class Color {
 		output.plus(b.multiple(weight));
 		output.bound();
 		return output;
+	}
+
+	public static Color averageColor(List<Color> colors) {
+		if (colors == null) {
+			return new Color(0, 0, 0);
+		}
+		Iterator<Color> ci = colors.iterator();
+		double r = 0;
+		double g = 0;
+		double b = 0;
+		while (ci.hasNext()) {
+			Color color = ci.next();
+			r += color.getRed();
+			g += color.getGreen();
+			b += color.getBlue();
+		}
+		int size = colors.size();
+		return new Color(r / size, g / size, b / size);
+
 	}
 	// TODO
 	public String asFormatString() {

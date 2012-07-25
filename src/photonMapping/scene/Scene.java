@@ -72,4 +72,8 @@ public class Scene {
 		return null;
 	}
 
+	public void addShape(IShape shape) {
+		this.shapes.add(shape);
+	}
+
 }
